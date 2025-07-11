@@ -1,12 +1,11 @@
-
-
+import Header from "../../components/header/Header"
 
 
 export default function() {
     
     return(
         <>
-            Olá, mundo
+            <Header/>
         </>
     )
 }
