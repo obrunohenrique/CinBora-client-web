@@ -1,5 +1,5 @@
 
-
+import Banner from "../../components/banner/Banner"
 
 
 export default function() {
@@ -7,6 +7,8 @@ export default function() {
     return(
         <>
             Olá, mundo
+
+            <Banner />
         </>
     )
 }
