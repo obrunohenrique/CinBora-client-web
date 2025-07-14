@@ -1,0 +1,49 @@
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 300px; /* ajuste conforme desejar */
+  overflow: hidden;
+}
+
+/* Imagem de fundo */
+.banner-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+  z-index: 0;
+}
+
+/* Camada preta sobre a imagem */
+.banner-sobreposicao {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.445);
+  z-index: 1;
+}
+
+/* Título visível sobre a imagem e sobreposição */
+.title-banner {
+  position: absolute;
+  z-index: 2;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+
+@media screen and (max-width: 600px) {
+    .title-banner {
+        visibility: hidden;
+    }
+}
