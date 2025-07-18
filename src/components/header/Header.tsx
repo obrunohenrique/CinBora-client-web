@@ -27,7 +27,9 @@ const Header: React.FC = () => {
       {/* Em telas maiores, mostrar a versão completa */}
       <div className="header-full">
         <div className="header-left">
+          <Link to={'/'}>
           <img src={logo_max} alt="Logo BlaBlaCar" className="header-logo-image" />
+          </Link>
           <nav className="header-nav">
             <a href="#">Central de Ajuda</a>
           </nav>

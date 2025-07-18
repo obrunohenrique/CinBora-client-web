@@ -15,7 +15,7 @@ type DriverInfo = {
 };
 
 const mockDrivers: DriverInfo[] = [
-  { time: '08:30',days: ['seg', 'ter', 'qua', 'qui'],  name: 'João Silva',origem:'CIn - centro de informática', destino: 'Piedade, Jaboatão', number: 'ABC‑1234', proximityKm: 1.2 },
+  { time: '08:30',days: ['seg', 'ter', 'qua', 'qui'],  name: 'Bruno Henrique Ferreira',origem:'CIn - centro de informática', destino: 'Piedade, Jaboatão', number: 'ABC‑1234', proximityKm: 1.2 },
   { time: '09:15',days: ['seg', 'ter', 'qua', 'qui'], name: 'Maria Souza',origem:'CIn - centro de informática',destino: 'Piedade, Jaboatão', number: 'DEF‑5678', proximityKm: 0.8 },
   { time: '10:00',days: ['seg', 'ter', 'qua', 'qui'], name: 'Carlos Pereira',origem:'CIn - centro de informática', number: 'GHI‑9012',destino: 'Piedade, Jaboatão', proximityKm: 2.5 },
 ];

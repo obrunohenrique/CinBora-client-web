@@ -1,0 +1,83 @@
+.main-login {
+    display: flex;
+    
+}
+
+.login-form-container {
+  min-width: 300px;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.login-form-label {
+  font-weight: 600;
+  color: var(--secundary-color);
+  margin-bottom: 0.5rem;
+}
+
+.login-form-input input,
+.login-form-input .ant-input-password {
+  padding: 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login-form-input input:focus,
+.login-form-input .ant-input-password:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
+}
+
+.login-remember-checkbox {
+  margin-bottom: 1rem;
+}
+
+.login-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.login-button-primary {
+    height: 44px;
+    width: 100%;
+    padding: 6px 24px;
+
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.login-button-primary:hover {
+    cursor: pointer;
+    opacity: 80%;
+}
+
+.login-button-text {
+  color: var(--primary-color);
+  background-color: var(--background-color);
+}
+
+.login-button-text:hover {
+    cursor: pointer;
+  text-decoration: underline;
+}
+
+.logo-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-cinbora-login {
+    width: 300px;
+    margin-bottom: 1rem;
+}

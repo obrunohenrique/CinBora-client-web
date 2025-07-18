@@ -1,6 +1,7 @@
+import logomax from '../../../public/cinbora-logo-max.png'
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input } from 'antd';
-
+import { Checkbox, Form, Input } from 'antd';
+import './register.css';
 
 type FieldType = {
   username?: string;
@@ -22,6 +23,7 @@ const RegisterPage = () => {
   return (
 		<Form
 			name="basic"
+			className="register-form-container"
 			labelCol={{ span: 8 }}
 			wrapperCol={{ span: 16 }}
 			style={{ minWidth: 400 }}
@@ -31,8 +33,15 @@ const RegisterPage = () => {
 			onFinishFailed={onFinishFailed}
 			autoComplete="off"
 		>
+
+			<div className='logo-login-container'>
+				<img src={logomax} alt="logo cinbora" className='logo-cinbora-login' />
+			</div>
+
+
 			<Form.Item<FieldType>
-				label="Nome de Usuário"
+				className="register-form-input"
+				label={<span className="register-form-label">Nome de Usuário</span>}
 				name="username"
 				rules={[{ required: true, message: 'Insira seu nome de usuário!' }]}
 				wrapperCol={{ span: 24 }}
@@ -41,7 +50,8 @@ const RegisterPage = () => {
 			</Form.Item>
 
 			<Form.Item<FieldType>
-				label="E-mail"
+				className="register-form-input"
+				label={<span className="register-form-label">E-mail</span>}
 				name="email"
 				rules={[
 					{ required: true, message: 'Insira seu endereço de e-mail!' },
@@ -60,7 +70,8 @@ const RegisterPage = () => {
 			</Form.Item>
 
 			<Form.Item<FieldType>
-				label="Senha"
+				className="register-form-input"
+				label={<span className="register-form-label">Senha</span>}
 				name="password"
 				rules={[{ required: true, message: 'Insira sua senha!' }]}
 				wrapperCol={{ span: 24 }}
@@ -69,7 +80,8 @@ const RegisterPage = () => {
 			</Form.Item>
 
 			<Form.Item<FieldType>
-				label="Confirmação de senha"
+				className="register-form-input"
+				label={<span className="register-form-label">Confirmação de senha</span>}
 				name="passwordConfirm"
 				rules={[
 					{ required: true, message: 'Confirme sua senha!' },
@@ -89,6 +101,7 @@ const RegisterPage = () => {
 			</Form.Item>
 
 			<Form.Item<FieldType>
+				className="register-checkbox"
 				name="remember"
 				valuePropName="checked"
 				label={null}
@@ -98,12 +111,12 @@ const RegisterPage = () => {
 			</Form.Item>
 
 			<Form.Item label={null} wrapperCol={{ span: 24 }}>
-				<Button type="primary" htmlType="submit">
-					Cadastre-se
-				</Button>
+				<button className="login-button-primary" type="submit">
+					Acesse
+				</button>
 			</Form.Item>
 		</Form>
   )
 }
 
-export default RegisterPage
+export default RegisterPage;

@@ -1,7 +1,7 @@
 import Header from "../../components/header/Header"
 import Banner from "../../components/banner/Banner"
 import CreateRideForm from "../../components/formcarona/CreateRide"
-import './MakeDriverForm.css'
+import './makedriverform.css'
 
 export default function MakeDriverForm() {
     
