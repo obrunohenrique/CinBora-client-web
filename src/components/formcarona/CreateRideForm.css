@@ -1,0 +1,75 @@
+.ride-form {
+  position: relative;
+  z-index: 9999;
+  margin: -140px auto 20px auto;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--secundary-color);
+}
+
+.ride-form__item {
+  margin-bottom: 1.5rem;
+}
+
+.ride-form__input,
+.ride-form__time-picker {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+.ride-form__input:focus,
+.ride-form__time-picker:focus {
+  border-color: #d60022;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
+}
+
+.ride-form__input:hover,
+.ride-form__time-picker:hover {
+  border-color: #d60022;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
+}
+
+.ride-form__checkbox-group .ant-checkbox-wrapper {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ride-form__action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+
+.ride-form__submit-button {
+  background-color: #d60022;
+  border-color: #d60022;
+  color: #fff;
+}
+
+.ride-form__submit-button:hover,
+.ride-form__submit-button:focus {
+  background-color: #b4001b;
+  border-color: #b4001b;
+  color: #fff;
+}
+
+.ride-form__reset-button {
+  border: 1px solid #d60022;
+  color: #d60022;
+  background: transparent;
+}
+
+.ride-form__reset-button:hover,
+.ride-form__reset-button:focus {
+  background-color: rgba(214, 0, 34, 0.1);
+  border-color: #b4001b;
+  color: #b4001b;
+}

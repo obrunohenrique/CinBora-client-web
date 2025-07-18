@@ -1,14 +1,12 @@
-
+import Header from "../../components/header/Header"
 import Banner from "../../components/banner/Banner"
-
 
 export default function() {
     
     return(
         <>
-            Olá, mundo
-
-            <Banner />
+            <Header/>
+            <Banner  title="CInBora: Seu Campus Mais Perto"/>
         </>
     )
 }

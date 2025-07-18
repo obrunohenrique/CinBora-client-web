@@ -1,0 +1,143 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 48px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  position: relative;
+}
+
+/* Ícones grandes */
+.header-icon {
+  font-size: 22px;
+  color: var(--primary-color);
+}
+
+.header-icon-small {
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+/* Logo */
+.header-logo-image {
+  height: 28px;
+}
+
+/* Navegação e botões */
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.header-nav a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.header-nav a:hover {
+  text-decoration: underline;
+}
+
+.header-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.header-button:hover {
+  text-decoration: underline;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
+/* Mobile */
+.header-full {
+  display: none;
+}
+
+.header-user-mobile,
+.header-logo-wrapper,
+.header-actions {
+  display: none;
+}
+
+/* Responsivo: abaixo de 768px */
+@media (max-width: 768px) {
+  .header-container {
+    justify-content: space-between;
+  }
+
+  .header-full {
+    display: none;
+  }
+
+  .header-user-mobile,
+  .header-logo-wrapper,
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-logo-wrapper {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .header-user-mobile {
+    justify-content: flex-start;
+  }
+
+  .header-actions {
+    justify-content: flex-end;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .header-user-mobile,
+  .header-logo-wrapper,
+  .header-actions {
+    display: none;
+  }
+
+  .header-full {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.Linkto{
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.Linkto:active{
+  color: var(--primary-color);
+}

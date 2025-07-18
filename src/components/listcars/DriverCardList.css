@@ -1,0 +1,101 @@
+/* Estilo do card */
+.driver-card {
+  max-width: 600px;
+  min-width: 300px;
+  margin: auto;
+  background-color: var(--background-color);
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+/* Nome do motorista em destaque */
+.driver-name {
+  font-size: 1.3rem;
+  color: var(--primary-color);
+}
+
+/* Hora estilizada */
+.driver-time {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Labels (Placa, Proximidade) */
+.label {
+  font-size: 1.2em;
+  color: var(--secundary-color);
+}
+
+/* Texto da placa */
+.driver-number {
+  color: #444;
+}
+
+/* Proximidade em destaque */
+.driver-proximity {
+  color: var(--font-color);
+  font-weight: bold;
+}
+
+/* Alteração no hover */
+.driver-card:hover {
+  transform: translateY(-4px);
+  transition: transform 0.2s;
+}
+
+.nome-hora-driver {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-card-driver{
+  display: flex;
+  gap: 1rem;
+}
+
+.header-card-driver img{
+  width: 60px;
+}
+
+.label-value-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  gap: 0.5rem;
+}
+
+.colunas-card-driver {
+  display: flex;
+  flex-direction: column;  
+}
+
+.info-card-driver{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btn-entraremcontato{
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+
+  height: 44px;
+  text-align: center;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 6px 24px;
+  border-radius: 8px;
+}
+
+.btn-entraremcontato:hover {
+  color: #fff;
+  cursor: pointer;
+  opacity: 90%;
+}
+
+.btn-entraremcontato:active {
+  color: #fff;
+}
