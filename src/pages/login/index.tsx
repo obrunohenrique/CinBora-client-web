@@ -1,6 +1,6 @@
 import logomax from '../../../public/cinbora-logo-max.png'
 import type { FormProps } from 'antd';
-import { Checkbox, Flex, Form, Input } from 'antd';
+import { Checkbox, Form, Input } from 'antd';
 import './loginpage.css';
 
 type FieldType = {
@@ -53,7 +53,7 @@ const LoginPage = () => {
 					]}
 					wrapperCol={{ span: 24 }}
 					>
-					<Input placeholder='seu.email@cin.ufpe.br' />
+					<Input placeholder='Digite seu email@cin.ufpe.br' />
 				</Form.Item>
 
 				<Form.Item<FieldType>

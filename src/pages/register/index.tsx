@@ -21,6 +21,7 @@ const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
 
 const RegisterPage = () => {
   return (
+	<div className='container'>
 		<Form
 			name="basic"
 			className="register-form-container"
@@ -46,7 +47,7 @@ const RegisterPage = () => {
 				rules={[{ required: true, message: 'Insira seu nome de usuário!' }]}
 				wrapperCol={{ span: 24 }}
 			>
-				<Input />
+				<Input placeholder='Digite seu nome de usuário'/>
 			</Form.Item>
 
 			<Form.Item<FieldType>
@@ -66,7 +67,7 @@ const RegisterPage = () => {
 				]}
 				wrapperCol={{ span: 24 }}
 			>
-				<Input placeholder='seu.email@cin.ufpe.br' />
+				<Input placeholder='Digite seu email@cin.ufpe.br' />
 			</Form.Item>
 
 			<Form.Item<FieldType>
@@ -116,6 +117,8 @@ const RegisterPage = () => {
 				</button>
 			</Form.Item>
 		</Form>
+	</div>
+
   )
 }
 
