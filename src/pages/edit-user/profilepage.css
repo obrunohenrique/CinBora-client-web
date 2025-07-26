@@ -1,0 +1,39 @@
+.container-profile {
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../../public/backgorund-pages.png');
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+
+}
+
+.container-sobreposicao-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.445);
+
+    padding: 2rem;
+}
+
+.back-button {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+
+    font-size: 25px;
+    color: var(--background-color);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 705px) {
+    .back-button{
+        visibility: hidden;
+    }
+}
