@@ -1,6 +1,15 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
 .register-form-container {
   min-width: 400px;
   max-width: 600px;
+  width: 100%;
   margin: auto;
   padding: 2rem;
   border-radius: 12px;
