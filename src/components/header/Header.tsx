@@ -2,15 +2,14 @@ import './header.css';
 import { Link } from 'react-router-dom';
 import logo_max from '../../../public/cinbora-logo-max.png'
 import logo_min from '../../../public/cinbora-logo-min.png'
-import { FaSearch, FaCarSide, FaUserCircle, FaChevronDown } from 'react-icons/fa';
+import { FaSearch, FaCarSide, FaUserCircle} from 'react-icons/fa';
 
 const Header: React.FC = () => {
   return (
     <header className="header-container">
       {/* Lado esquerdo: ícone do usuário */}
       <div className="header-user-mobile">
-        <FaUserCircle className="header-icon" />
-        <FaChevronDown className="header-icon-small" />
+        <Link to={'/perfil'} className='Linkto'><FaUserCircle className="header-icon" /></Link>
       </div>
 
       {/* Logo centralizada em telas pequenas */}
@@ -45,8 +44,7 @@ const Header: React.FC = () => {
             <Link to={'/criar-carona'} className='Linkto'><span>Oferecer Carona</span></Link>
           </button>
           <div className="header-user">
-            <FaUserCircle className="header-icon" />
-            <FaChevronDown className="header-icon-small" />
+            <Link to={'/perfil'} className='Linkto'><FaUserCircle className="header-icon" /></Link>
           </div>
         </div>
       </div>

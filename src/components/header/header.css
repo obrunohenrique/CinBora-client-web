@@ -84,6 +84,12 @@
 .header-logo-wrapper,
 .header-actions {
   display: none;
+  
+}
+
+.header-actions {
+  display: flex;
+  gap: 1rem;
 }
 
 /* Responsivo: abaixo de 768px */
