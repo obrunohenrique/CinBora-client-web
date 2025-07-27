@@ -1,4 +1,15 @@
 .main-login {
+  background-image: url('../../../public/backgorund-pages.png');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-login-sobreposicao {
+  background-color: rgba(0, 0, 0, 0.445);
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -41,6 +52,12 @@
 
 .login-form-input input:focus,
 .login-form-input .ant-input-password:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
+}
+
+.login-form-input input:hover,
+.login-form-input .ant-input-password:hover {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
 }
