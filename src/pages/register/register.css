@@ -1,13 +1,22 @@
 .container{
   width: 100vw;
   height: 100vh;
+  background-image: url('../../../public/backgorund-pages.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.container-cadastro-sobreposicao {
+  background-color: rgba(0, 0, 0, 0.445);
+  width: 100vw;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   display: flex;
 }
 
 .register-form-container {
-  min-width: 400px;
+  min-width: 300px;
   max-width: 600px;
   width: 100%;
   margin: auto;
@@ -18,9 +27,18 @@
 }
 
 .register-form-label {
+  margin: 0;
   font-weight: 600;
-  color: #333333;
-  margin-bottom: 0.5rem;
+  color: var(--secundary-color);
+  margin-bottom: 5px;
+}
+
+.register-form-label span {
+  color: red;
+}
+
+.label-input-register{
+  width: max-content;
 }
 
 .register-form-input input,
@@ -36,11 +54,29 @@
   box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
 }
 
+.register-form-input input:hover,
+.register-form-input .ant-input-password:hover {
+  border-color: #d60022;
+  box-shadow: 0 0 0 2px rgba(214, 0, 34, 0.2);
+}
+
+
 .register-checkbox {
   margin-bottom: 1rem;
 }
 
-.register-checkbox:active {
-    color: var(--primary-color);
-    
+.register-line-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.register-line-inputs div{
+  width: 100%;
+}
+
+@media screen and (max-width: 605px) {
+  .register-line-inputs {
+      flex-wrap: wrap;
+  }
 }
