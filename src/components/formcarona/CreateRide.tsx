@@ -1,8 +1,8 @@
 import './CreateRideForm.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
-import { Form, TimePicker, Checkbox, Input, Button, Space } from 'antd';
+import { Form, TimePicker, Checkbox, Input, Button, Space, Radio } from 'antd';
 import type { FormProps } from 'antd';
 
 type RideFormValues = {
@@ -10,6 +10,7 @@ type RideFormValues = {
   days: string[];
   from: string;
   to: string;
+  trajeto: string;
 };
 
 const daysOptions = [
@@ -22,8 +23,15 @@ const daysOptions = [
   { label: 'Domingo', value: 'sun' },
 ];
 
+const locationOptions = [
+  { label: 'CIn', value: 'saindo' },
+  { label: 'Casa', value: 'partindo' },
+];
+
 const CreateRideForm: React.FC = () => {
   const [form] = Form.useForm<RideFormValues>();
+  const [fromDisabled, setFromDisabled] = useState(false);
+  const [toDisabled, setToDisabled] = useState(false);
 
   const onFinish: FormProps<RideFormValues>['onFinish'] = (values) => {
     console.log('Dados da carona:', {
@@ -34,12 +42,25 @@ const CreateRideForm: React.FC = () => {
     });
   };
 
+  const handleFormChange = (changedValues: any) => {
+    if (changedValues.trajeto === 'saindo') {
+      form.setFieldsValue({ from: 'CIn', to: '' });
+      setFromDisabled(true);
+      setToDisabled(false);
+    } else if (changedValues.trajeto === 'partindo') {
+      form.setFieldsValue({ from: '', to: 'CIn' });
+      setFromDisabled(false);
+      setToDisabled(true);
+    }
+  };
+
   return (
     <Form
       form={form}
       layout="vertical"
       className="ride-form"
       onFinish={onFinish}
+      onValuesChange={handleFormChange}
     >
       <Form.Item
         label="Horário"
@@ -63,12 +84,25 @@ const CreateRideForm: React.FC = () => {
       </Form.Item>
 
       <Form.Item
+        label="Você está indo para:"
+        name="trajeto"
+        rules={[{ required: true, message: 'Escolha o trajeto!' }]}
+        className="ride-form__item ride-form__item--trajeto"
+      >
+        <Radio.Group
+          options={locationOptions}
+          className="ride-form__radio-group"
+        />
+      </Form.Item>
+
+      <Form.Item
         label="Ponto de partida"
         name="from"
         rules={[{ required: true, message: 'Informe o ponto de partida!' }]}
         className="ride-form__item ride-form__item--from"
       >
         <Input
+          disabled={fromDisabled}
           placeholder="Ex: CIN UFPE"
           className="ride-form__input ride-form__input--from"
         />
@@ -81,6 +115,7 @@ const CreateRideForm: React.FC = () => {
         className="ride-form__item ride-form__item--to"
       >
         <Input
+          disabled={toDisabled}
           placeholder="Ex: Porto Digital"
           className="ride-form__input ride-form__input--to"
         />
@@ -91,7 +126,11 @@ const CreateRideForm: React.FC = () => {
           <Button type="primary" htmlType="submit" className="ride-form__submit-button">
             Criar Carona
           </Button>
-          <Button htmlType="button" onClick={() => form.resetFields()} className="ride-form__reset-button">
+          <Button htmlType="button" onClick={() => {
+            form.resetFields();
+            setFromDisabled(false);
+            setToDisabled(false);
+          }} className="ride-form__reset-button">
             Limpar
           </Button>
         </Space>
