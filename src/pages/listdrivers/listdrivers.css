@@ -9,3 +9,17 @@
   color: var(--primary-color);
   text-align: center;
  }
+
+.background {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../../../public/backgorund-pages.png');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+
+  width: 100vw;
+  height: 100vh;
+
+  color: white;
+}
