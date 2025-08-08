@@ -8,7 +8,7 @@ export default function MakeDriverForm() {
     return(
         <>
             <Header/>
-            <Banner  title="Ofereça uma Carona e CinBora!"/>
+            {/* <Banner  title="Ofereça uma Carona e CinBora!"/> */}
             <div className="fundo-form-carona">
                 <CreateRideForm/>
             </div>
