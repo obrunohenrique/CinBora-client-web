@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import logomax from '../../../public/cinbora-logo-max.png'
@@ -110,10 +111,14 @@ const LoginPage = () => {
 							Acesse
 						</button>
 
-
 						<button className="login-button-text" type="button" onClick={() => console.log('Redirecionar para recuperar senha')}>
-							Esqueci a senha
+							<Link className="login-button-text" to='/cadastro'>Ainda não possuo cadastro!</Link>
 						</button>
+
+
+						{/* <button className="login-button-text" type="button" onClick={() => console.log('Redirecionar para recuperar senha')}>
+							Esqueci a senha
+						</button> */}
 
 
 					</div>

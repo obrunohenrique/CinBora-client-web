@@ -7,18 +7,21 @@ import ConfirmEmailPage from './pages/confirm-email';
 import MakeDriverForm from './pages/make-driver/MakeDriverForm';
 import ListDrivers from './pages/listdrivers/ListDrivers';
 import Profile from './pages/edit-user/Profile';
+import TermsAndPrivacy from './pages/politicaetermos/PoliticaTermos';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/acesso" element={<LoginPage />} />
         <Route path='/cadastro' element={<RegisterPage />} />
         <Route path='/confirmar-email' element={<ConfirmEmailPage />} />
         <Route path='/criar-carona' element={<MakeDriverForm />} />
         <Route path='/obter-carona' element={<ListDrivers />} />
         <Route path='/perfil' element={<Profile />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/politica&termos" element={<TermsAndPrivacy />} />
       </Routes>
     </Router>
   );

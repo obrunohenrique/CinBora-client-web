@@ -72,7 +72,9 @@ export default function ListDrivers() {
                 <LocationSearch label='Selecione partida 📍' onSelect={handlePickupLocationSelect} />
                 <LocationSearch label='Selecione destino 📍' onSelect={handleDropoffLocationSelect} />
                 <TimePicker placeholder='Horário' size='large' needConfirm onChange={handleTimePick}/>
-                <Button size='large' onClick={handleSearch}>
+                <Button size='large'
+                style={{borderColor: 'var(primary-color)', backgroundColor: 'white', color: 'var(primary-color)'}}
+                onClick={handleSearch}>
                     Buscar
                 </Button>
             </Flex>

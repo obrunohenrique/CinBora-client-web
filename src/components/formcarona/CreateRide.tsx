@@ -85,32 +85,54 @@ const CreateRideForm: React.FC = () => {
         onFinish={handleSubmit}
         className="form"
       >
+
         <Flex vertical gap={32} justify="center">
-          <label htmlFor="date-picker" style={{ display: 'block', marginBottom: 4, marginTop: 4, fontSize: 18 }}>
-            Selecione o dia 🌅
-          </label>
-          <Form.Item name="date" rules={[{ required: true, message: 'Selecione o dia' }]}>
-            <DatePicker placeholder="Selecione o dia" size="large" id="date-picker" />
-          </Form.Item>
+          <div className='label-ant-nosso-2'>
+            <div className='label-ant-nosso'>
+              <label htmlFor="date-picker" style={{ display: 'block', marginTop: 4, fontSize: 18 }}>
+                Selecione o dia 🌅
+              </label>
+              <Form.Item name="date" rules={[{ required: true, message: 'Selecione o dia' }]}>
+                <DatePicker placeholder="Selecione o dia" size="large" id="date-picker" />
+              </Form.Item>
+            </div>
 
-          <label htmlFor="time-picker" style={{ display: 'block', marginBottom: 4, marginTop: 4, fontSize: 18 }}>
-            Selecione o horário ⌚
-          </label>
-          <Form.Item name="time" rules={[{ required: true, message: 'Selecione a hora' }]}>
-            <TimePicker placeholder="Selecione a hora" size="large" id="time-picker" />
-          </Form.Item>
+            <div className='label-ant-nosso'>
+              <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+                Selecione o horário ⌚
+              </label>
+              <Form.Item name="time" rules={[{ required: true, message: 'Selecione a hora' }]}>
+                <TimePicker placeholder="Selecione a hora" size="large" id="time-picker" />
+              </Form.Item>
+            </div>
 
-          <LocationSearch label="Selecione partida 📍" onSelect={handleOriginSelect} />
-          <LocationSearch label="Selecione destino 📍" onSelect={handleDestinationSelect} />
+          </div>
+
+          <div>
+            <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+              Selecione partida 📍
+            </label>
+            <LocationSearch onSelect={handleOriginSelect} />
+          </div>
+
+          <div>
+
+            <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+              Selecione destino 📍
+            </label>
+            <LocationSearch onSelect={handleDestinationSelect} />
+          </div>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" loading={submitting}>
+            <Button type="primary"
+              style={{ backgroundColor: 'var(--primary-color)' }}
+              htmlType="submit" loading={submitting}>
               Criar carona
             </Button>
           </Form.Item>
         </Flex>
       </Form>
-      <ToastContainer position="top-right" autoClose={3000} theme='colored'/>
+      <ToastContainer position="top-right" autoClose={3000} theme='colored' />
     </div>
   );
 };

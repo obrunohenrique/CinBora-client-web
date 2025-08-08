@@ -80,3 +80,7 @@
       flex-wrap: wrap;
   }
 }
+
+.login-button-text-container {
+  text-align: center;
+}
