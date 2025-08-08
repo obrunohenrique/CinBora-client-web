@@ -4,6 +4,8 @@ import logomax from '../../../public/cinbora-logo-max.png'
 import type { FormProps } from 'antd';
 import { Checkbox, Form, Input } from 'antd';
 import './loginpage.css';
+import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 type FieldType = {
 	email?: string;
@@ -11,17 +13,35 @@ type FieldType = {
 	remember?: string;
 };
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-	console.log('Success:', values);
-	toast.success('Login realizado com sucesso!🎉')
-};
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-	console.log('Failed:', errorInfo);
-	toast.error('Preencha os campos corretamente!')
-};
 
 const LoginPage = () => {
+	const navigate = useNavigate();
+	
+	const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+		console.log('Success:', values);
+	
+		const response = await api.post(`/auth/login?email=${values.email}&password=${values.password}`);	
+		
+		const { 
+			AccessToken, 
+			IdToken, 
+			RefreshToken 
+		} = response.data;
+
+		localStorage.setItem('accessToken', AccessToken);
+		localStorage.setItem('IdToken', IdToken);
+		localStorage.setItem('RefreshToken', RefreshToken);
+
+		navigate('/obter-carona');
+	
+		toast.success('Login realizado com sucesso!🎉');
+	};
+	
+	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+		console.log('Failed:', errorInfo);
+		toast.error('Preencha os campos corretamente!')
+	};
+
 	return (
 		<main className='main-login'>
 			<div className='main-login-sobreposicao'>

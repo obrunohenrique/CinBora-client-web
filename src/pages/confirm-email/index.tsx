@@ -2,28 +2,33 @@ import type { FormProps } from 'antd';
 import { Button, Flex, Form, Input } from 'antd';
 import './confirm-email-page.css';
 import logomax from '../../../public/cinbora-logo-max.png'
+import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 
 type FieldType = {
-	email?: string;
-	password?: string;
-	remember?: string;
+	code?: string;
 };
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-	console.log('Success:', values);
-};
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-	console.log('Failed:', errorInfo);
-};
 
 const ConfirmEmailPage = () => {
+	const navigate = useNavigate();
+	
+	const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+		const email = localStorage.getItem('email');
+	
+		await api.post(`/auth/verify_email?email=${email}&code=${values.code}`, {});
+
+		navigate('/acesso')
+	};
+	
+	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+		console.log('Failed:', errorInfo);
+	};
+
 	return (
 		<div className='main-recuperar-senha'>
 			<div className='main-recuperar-senha-sobreposicao'>
-
-
 				<Form
 					name="basic"
 					className="estrutura-formulario-verificacao"
@@ -35,15 +40,13 @@ const ConfirmEmailPage = () => {
 					onFinishFailed={onFinishFailed}
 					autoComplete="off"
 				>
-
 					<div className='logo-login-container'>
 						<img src={logomax} alt="logo cinbora" className='logo-cinbora-login' />
 					</div>
-
 					<Form.Item
 						className="campo-codigo-verificacao"
 						label="Código de verificação"
-						name="verificationCode"
+						name="code"
 						rules={[
 							{ required: true, message: 'Insira o código de verificação!' },
 							{ min: 6, message: 'O código deve ter pelo menos 6 caracteres!' }
