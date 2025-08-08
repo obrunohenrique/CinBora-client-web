@@ -25,12 +25,14 @@ const LoginPage = () => {
 		const { 
 			AccessToken, 
 			IdToken, 
-			RefreshToken 
+			RefreshToken,
+			user_id
 		} = response.data;
 
 		localStorage.setItem('accessToken', AccessToken);
 		localStorage.setItem('IdToken', IdToken);
 		localStorage.setItem('RefreshToken', RefreshToken);
+		localStorage.setItem('userId', user_id);
 
 		navigate('/obter-carona');
 	
