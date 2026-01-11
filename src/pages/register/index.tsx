@@ -1,29 +1,44 @@
+import { Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import logomax from '../../../public/cinbora-logo-max.png'
 import type { FormProps } from 'antd';
 import { Checkbox, Form, Input } from 'antd';
 import './register.css';
+import api from '../../api';
 
 type FieldType = {
 	username?: string;
 	email?: string;
+	phone?: string;
 	password?: string;
 	passwordConfirm?: string;
 	remember?: string;
 };
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-	console.log('Success:', values);
-	toast.success('Cadastrado com sucesso!🎉')
-};
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-	console.log('Failed:', errorInfo);
-	toast.error('Por favor, revise os campos!')
-};
 
 const RegisterPage = () => {
+	const navigate = useNavigate();
+
+	const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
+		await api.post('/users/', {
+			name: values.username,
+			password: values.password,
+			email: values.email,
+			phone: values.phone,
+		}).then(() => {
+			toast.success('Verifique seu e-mail ✉️')
+			localStorage.setItem('email', values?.email as string)
+			navigate("/confirmar-email");
+		})
+	};
+
+	const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+		console.log('Failed:', errorInfo);
+		toast.error('Por favor, revise os campos!')
+	};
+
 	return (
 		<div className='container'>
 			<div className='container-cadastro-sobreposicao'>
@@ -82,6 +97,17 @@ const RegisterPage = () => {
 
 					</div>
 
+					{/* TODO: avoid line break at label */}
+					<Form.Item<FieldType>
+						className="register-form-input"
+						label={<span className="register-form-label">Número de celular (WhatsApp)</span>}
+						name="phone"
+						rules={[{ required: true, message: 'Insira seu número' }]}
+						wrapperCol={{ span: 24 }}
+					>
+						<Input placeholder='(81)999999999' />
+					</Form.Item>
+
 					<Form.Item<FieldType>
 						className="register-form-input"
 						label={<span className="register-form-label">Senha</span>}
@@ -127,9 +153,15 @@ const RegisterPage = () => {
 						<button className="login-button-primary" type="submit">
 							Casdastre-se
 						</button>
+
+						<div className='login-button-text-container'>
+							<button className="login-button-text" type="button" onClick={() => console.log('Redirecionar para recuperar senha')}>
+								<Link className="login-button-text" to='/acesso'>Já possuo cadastro!</Link>
+							</button>
+						</div>
 					</Form.Item>
 				</Form>
-				<ToastContainer position="top-right" autoClose={3000} theme='colored'/>
+				<ToastContainer position="top-center" autoClose={3000} theme='colored' />
 			</div>
 		</div>
 

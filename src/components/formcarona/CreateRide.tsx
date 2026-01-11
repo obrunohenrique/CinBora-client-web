@@ -1,102 +1,139 @@
 import './CreateRideForm.css';
 
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
-import { Form, TimePicker, Checkbox, Input, Button, Space } from 'antd';
-import type { FormProps } from 'antd';
-
-type RideFormValues = {
-  time: moment.Moment;
-  days: string[];
-  from: string;
-  to: string;
-};
-
-const daysOptions = [
-  { label: 'Segunda', value: 'mon' },
-  { label: 'Terça', value: 'tue' },
-  { label: 'Quarta', value: 'wed' },
-  { label: 'Quinta', value: 'thu' },
-  { label: 'Sexta', value: 'fri' },
-  { label: 'Sábado', value: 'sat' },
-  { label: 'Domingo', value: 'sun' },
-];
+import { Form, TimePicker, Button, DatePicker, message, Flex } from 'antd';
+import type { Moment } from 'moment';
+import LocationSearch from '../location-search';
+import api from '../../api';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const CreateRideForm: React.FC = () => {
-  const [form] = Form.useForm<RideFormValues>();
+  const navigate = useNavigate();
 
-  const onFinish: FormProps<RideFormValues>['onFinish'] = (values) => {
-    console.log('Dados da carona:', {
-      time: values.time.format('HH:mm'),
-      days: values.days,
-      from: values.from,
-      to: values.to,
-    });
-  };
+  const [form] = Form.useForm();
+  const [origin, setOrigin] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [destination, setDestination] = useState<{ latitude: number; longitude: number } | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  function handleOriginSelect(location: { lat: number; lng: number }) {
+    setOrigin({ latitude: location.lat, longitude: location.lng });
+  }
+
+  function handleDestinationSelect(location: { lat: number; lng: number }) {
+    setDestination({ latitude: location.lat, longitude: location.lng });
+  }
+
+  function getDaysOfWeek(date: Moment) {
+    return [date.format('dddd')];
+  }
+
+  async function handleSubmit(values: { date?: Moment; time?: Moment }) {
+    const selectedDate = values.date;
+    const selectedTime = values.time;
+
+    if (!selectedDate || !selectedTime) {
+      message.error('Por favor selecione data e hora.');
+      return;
+    }
+
+    if (!origin || !destination) {
+      message.error('Por favor selecione partida e destino.');
+      return;
+    }
+
+    const combined = moment(
+      `${selectedDate.format('YYYY-MM-DD')} ${selectedTime.format('HH:mm:ss')}`
+    ).toISOString();
+
+    const driver_id = localStorage.getItem("user_id")
+
+    const body = {
+      id_driver: driver_id,
+      origin: origin,
+      destination: destination,
+      days_of_week: getDaysOfWeek(selectedDate),
+      price: 0,
+      available_seats: 0,
+      status: 'available',
+      start_time: combined,
+      description: '',
+    };
+
+    try {
+      setSubmitting(true);
+      await api.post('/travel/', body);
+      message.success('Carona criada com sucesso.');
+      form.resetFields();
+      setOrigin(null);
+      setDestination(null);
+    } catch (error) {
+      console.error('Failed to create ride:', error);
+      toast.error('Não conseguimos criar a carona agora. Tente mais tarde!')
+    } finally {
+      navigate('/obter-carona')
+      setSubmitting(false);
+    }
+  }
 
   return (
-    <Form
-      form={form}
-      layout="vertical"
-      className="ride-form"
-      onFinish={onFinish}
-    >
-      <Form.Item
-        label="Horário"
-        name="time"
-        rules={[{ required: true, message: 'Selecione o horário!' }]}
-        className="ride-form__item ride-form__item--time"
+    <div style={{ maxWidth: 800, marginLeft: 'auto', marginRight: 'auto', marginTop: 100 }}>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+        className="form"
       >
-        <TimePicker format="HH:mm" className="ride-form__time-picker" />
-      </Form.Item>
 
-      <Form.Item
-        label="Dias da semana"
-        name="days"
-        rules={[{ required: true, message: 'Selecione pelo menos um dia!' }]}
-        className="ride-form__item ride-form__item--days"
-      >
-        <Checkbox.Group
-          options={daysOptions}
-          className="ride-form__checkbox-group"
-        />
-      </Form.Item>
+        <Flex vertical gap={32} justify="center">
+          <div className='label-ant-nosso-2'>
+            <div className='label-ant-nosso'>
+              <label htmlFor="date-picker" style={{ display: 'block', marginTop: 4, fontSize: 18 }}>
+                Selecione o dia 🌅
+              </label>
+              <Form.Item name="date" rules={[{ required: true, message: 'Selecione o dia' }]}>
+                <DatePicker placeholder="Selecione o dia" size="large" id="date-picker" />
+              </Form.Item>
+            </div>
 
-      <Form.Item
-        label="Ponto de partida"
-        name="from"
-        rules={[{ required: true, message: 'Informe o ponto de partida!' }]}
-        className="ride-form__item ride-form__item--from"
-      >
-        <Input
-          placeholder="Ex: CIN UFPE"
-          className="ride-form__input ride-form__input--from"
-        />
-      </Form.Item>
+            <div className='label-ant-nosso'>
+              <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+                Selecione o horário ⌚
+              </label>
+              <Form.Item name="time" rules={[{ required: true, message: 'Selecione a hora' }]}>
+                <TimePicker placeholder="Selecione a hora" size="large" id="time-picker" />
+              </Form.Item>
+            </div>
 
-      <Form.Item
-        label="Ponto de chegada"
-        name="to"
-        rules={[{ required: true, message: 'Informe o ponto de chegada!' }]}
-        className="ride-form__item ride-form__item--to"
-      >
-        <Input
-          placeholder="Ex: Porto Digital"
-          className="ride-form__input ride-form__input--to"
-        />
-      </Form.Item>
+          </div>
 
-      <Form.Item className="ride-form__item ride-form__item--actions">
-        <Space className="ride-form__action-buttons">
-          <Button type="primary" htmlType="submit" className="ride-form__submit-button">
-            Criar Carona
-          </Button>
-          <Button htmlType="button" onClick={() => form.resetFields()} className="ride-form__reset-button">
-            Limpar
-          </Button>
-        </Space>
-      </Form.Item>
-    </Form>
+          <div>
+            <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+              Selecione partida 📍
+            </label>
+            <LocationSearch onSelect={handleOriginSelect} />
+          </div>
+
+          <div>
+
+            <label htmlFor="time-picker" style={{ color: 'white', display: 'block', marginTop: 4, fontSize: 18 }}>
+              Selecione destino 📍
+            </label>
+            <LocationSearch onSelect={handleDestinationSelect} />
+          </div>
+
+          <Form.Item>
+            <Button type="primary"
+              style={{ backgroundColor: 'var(--primary-color)' }}
+              htmlType="submit" loading={submitting}>
+              Criar carona
+            </Button>
+          </Form.Item>
+        </Flex>
+      </Form>
+      <ToastContainer position="top-right" autoClose={3000} theme='colored' />
+    </div>
   );
 };
 

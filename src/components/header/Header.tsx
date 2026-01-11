@@ -8,9 +8,9 @@ const Header: React.FC = () => {
   return (
     <header className="header-container">
       {/* Lado esquerdo: ícone do usuário */}
-      <div className="header-user-mobile">
+      {/* <div className="header-user-mobile">
         <Link to={'/perfil'} className='Linkto'><FaUserCircle className="header-icon" /></Link>
-      </div>
+      </div> */}
 
       {/* Logo centralizada em telas pequenas */}
       <div className="header-logo-wrapper">
@@ -26,11 +26,11 @@ const Header: React.FC = () => {
       {/* Em telas maiores, mostrar a versão completa */}
       <div className="header-full">
         <div className="header-left">
-          <Link to={'/'}>
+          <Link to={'/home'}>
           <img src={logo_max} alt="Logo BlaBlaCar" className="header-logo-image" />
           </Link>
           <nav className="header-nav">
-            <a href="#">Central de Ajuda</a>
+            <Link to={'/politica&termos'} className='Linkto'><span>Política e Termos</span></Link>
           </nav>
         </div>
 
@@ -43,9 +43,9 @@ const Header: React.FC = () => {
             <FaCarSide className="header-icon" />
             <Link to={'/criar-carona'} className='Linkto'><span>Oferecer Carona</span></Link>
           </button>
-          <div className="header-user">
+          {/* <div className="header-user">
             <Link to={'/perfil'} className='Linkto'><FaUserCircle className="header-icon" /></Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 .ride-form {
   position: relative;
-  z-index: 9999;
+  /* z-index: 9999; */
   margin: -170px auto 20px auto;
   max-width: 800px;
   background-color: #fff;
@@ -72,4 +72,17 @@
   background-color: rgba(214, 0, 34, 0.1);
   border-color: #b4001b;
   color: #b4001b;
+}
+
+.form {
+  max-width: 800px;
+}
+
+.label-ant-nosso {
+  color: white;
+}
+
+.label-ant-nosso-2 {
+  display: flex;
+  gap: 4rem;
 }

@@ -51,6 +51,7 @@
 
 .header-card-driver{
   display: flex;
+  min-width: 500px;
   gap: 1rem;
 }
 

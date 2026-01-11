@@ -1,0 +1,122 @@
+/* background geral */
+.background {
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f8fa; /* fundo claro */
+  color: #333; /* texto escuro para melhor contraste no fundo claro */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* seção sobre o app */
+.about-app {
+  max-width: 800px;
+  margin: 40px auto 20px;
+  padding: 0 20px;
+  color: #222; /* texto escuro para leitura */
+}
+
+.about-app h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.about-app p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* cards */
+.app-cards {
+  max-width: 900px;
+  margin: 20px auto 40px;
+  padding: 0 20px;
+}
+
+.app-cards h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+}
+
+/* container dos cards: flex para alinhar horizontal */
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* card individual */
+.card {
+  background: white;
+  color: #333; /* cor para texto dentro do card */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  flex: 1 1 280px; /* flex-grow, flex-shrink, base width */
+  padding: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* container do mapa */
+.cinbora-map-container {
+  max-width: 900px;
+  height: 500px;
+  margin: 0 auto 60px;
+  padding: 0 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: white; /* fundo branco para o mapa */
+}
+
+/* footer */
+.cinbora-footer {
+  background-color: #222;
+  color: #ddd;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.cinbora-footer a {
+  color: #4db6ac;
+  text-decoration: none;
+}
+
+.cinbora-footer a:hover {
+  text-decoration: underline;
+}
+
+/* responsividade */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    flex: 1 1 auto;
+  }
+
+  .cinbora-map-container {
+    height: 300px; /* mapa menor em telas pequenas */
+    padding: 0 10px;
+  }
+}
